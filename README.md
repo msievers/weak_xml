@@ -10,6 +10,8 @@
 ## Usage
 
 ```ruby
+require "weak_xml"
+
 xml = <<-EOXML
 <xml>
   <foo>
