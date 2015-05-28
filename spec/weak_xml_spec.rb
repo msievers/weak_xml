@@ -28,7 +28,7 @@ describe WeakXml do
 
   describe ".new" do
     it "creates an instance which holds options and the xml" do
-      expect(WeakXml.new(xml, disable_multiline: false)).to be_a(described_class)
+      expect(WeakXml.new(xml, multiline: true)).to be_a(described_class)
     end
   end
 

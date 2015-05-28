@@ -39,11 +39,11 @@ class Benchmark::WeakXml::WeakXmlVersusOthers
       end
 
       x.report("WeakXml (-ML)") do
-        WeakXml.find("z303-id", ALEPH_BOR_INFO_XML, disable_multiline: true).content
+        WeakXml.find("z303-id", ALEPH_BOR_INFO_XML, multiline: false).content
       end
 
       x.report("WeakXml (+hint, -ML)") do
-        WeakXml.find("<z303-id>", ALEPH_BOR_INFO_XML, disable_multiline: true).content
+        WeakXml.find("<z303-id>", ALEPH_BOR_INFO_XML, multiline: false).content
       end
 
       x.report("Plain regex") do
@@ -81,11 +81,11 @@ class Benchmark::WeakXml::WeakXmlVersusOthers
       end
 
       x.report("WeakXml (-ML)") do
-        WeakXml.find("z303-id", ALEPH_BOR_INFO_XML, disable_multiline: true).content
+        WeakXml.find("z303-id", ALEPH_BOR_INFO_XML, multiline: false).content
       end
 
       x.report("WeakXml (+hint, -ML)") do
-        WeakXml.find("<z303-id>", ALEPH_BOR_INFO_XML, disable_multiline: true)#.content
+        WeakXml.find("<z303-id>", ALEPH_BOR_INFO_XML, multiline: false)#.content
       end
       
       x.compare!
@@ -115,7 +115,7 @@ class Benchmark::WeakXml::WeakXmlVersusOthers
       end
 
       x.report("WeakXml (-ML)") do
-        WeakXml.find_all("fee", ALMA_FEES_XML, disable_multiline: true).map { |_fee| _fee.attr("link") }
+        WeakXml.find_all("fee", ALMA_FEES_XML, multiline: false).map { |_fee| _fee.attr("link") }
       end
 
       x.compare!

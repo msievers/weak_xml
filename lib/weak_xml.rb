@@ -16,7 +16,7 @@ class WeakXml
   end
 
   def self.regex_factory(tag, options = {})
-    enable_multiline = !options[:disable_multiline]
+    options[:multiline] = options[:multiline].nil? ? true : !!options[:multiline]
 
     regexp_base =
     if tag.start_with?("<") && tag.end_with?(">")
@@ -25,7 +25,7 @@ class WeakXml
       "<#{tag}[>\s].*?<\/#{tag}>"
     end
 
-    Regexp.new(regexp_base, (enable_multiline ? Regexp::MULTILINE : 0))
+    Regexp.new(regexp_base, (options[:multiline] ? Regexp::MULTILINE : 0))
   end
 
   def initialize(xml, options = {})

@@ -44,7 +44,7 @@ WeakXml.find_all("nope", xml) # => []
 some_nodes.map(&:content) # => ["content1", "content2", "content3"]
 
 # xml/options can be stored within an instance of WeakXml
-doc = WeakXml.new(xml, disable_multiline: false)
+doc = WeakXml.new(xml, multiline: false)
 doc.find("bar").content # => "content1"
 ```
 
