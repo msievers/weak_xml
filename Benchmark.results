@@ -27,68 +27,96 @@ power management:
 Find 'z303-id' and get content
 
 Calculating -------------------------------------
-            Nokogiri   380.000  i/100ms
+            Nokogiri   361.000  i/100ms
                  Oga    10.000  i/100ms
-                  Ox   197.000  i/100ms
-             WeakXml     3.455k i/100ms
-     WeakXml (+hint)     4.642k i/100ms
-       WeakXml (-ML)     3.274k i/100ms
-WeakXml (+hint, -ML)     4.680k i/100ms
-         Plain regex     6.332k i/100ms
+                  Ox   198.000  i/100ms
+             WeakXml     4.202k i/100ms
+     WeakXml (+hint)     4.556k i/100ms
+       WeakXml (-ML)     4.007k i/100ms
+WeakXml (+hint, -ML)     4.352k i/100ms
+         Plain regex     6.425k i/100ms
 -------------------------------------------------
-            Nokogiri      4.470k (±17.0%) i/s -     21.660k
-                 Oga    108.459  (± 0.9%) i/s -    550.000 
-                  Ox      2.013k (± 1.3%) i/s -     10.244k
-             WeakXml     49.599k (± 1.8%) i/s -    248.760k
-     WeakXml (+hint)     73.063k (± 2.1%) i/s -    366.718k
-       WeakXml (-ML)     46.812k (± 5.6%) i/s -    235.728k
-WeakXml (+hint, -ML)     72.827k (± 1.5%) i/s -    365.040k
-         Plain regex    102.960k (± 1.5%) i/s -    519.224k
+            Nokogiri      4.211k (±22.0%) i/s -      7.942k
+                 Oga    107.656  (± 0.9%) i/s -    220.000 
+                  Ox      2.006k (± 1.3%) i/s -      4.158k
+             WeakXml     60.069k (± 2.1%) i/s -    121.858k
+     WeakXml (+hint)     67.484k (± 1.5%) i/s -    136.680k
+       WeakXml (-ML)     57.477k (± 2.0%) i/s -    116.203k
+WeakXml (+hint, -ML)     64.767k (± 1.9%) i/s -    130.560k
+         Plain regex    107.943k (± 2.0%) i/s -    218.450k
 
 Comparison:
-         Plain regex:   102959.7 i/s
-     WeakXml (+hint):    73062.7 i/s - 1.41x slower
-WeakXml (+hint, -ML):    72826.5 i/s - 1.41x slower
-             WeakXml:    49599.3 i/s - 2.08x slower
-       WeakXml (-ML):    46812.4 i/s - 2.20x slower
-            Nokogiri:     4469.6 i/s - 23.04x slower
-                  Ox:     2013.0 i/s - 51.15x slower
-                 Oga:      108.5 i/s - 949.30x slower
+         Plain regex:   107943.2 i/s
+     WeakXml (+hint):    67484.5 i/s - 1.60x slower
+WeakXml (+hint, -ML):    64766.6 i/s - 1.67x slower
+             WeakXml:    60069.1 i/s - 1.80x slower
+       WeakXml (-ML):    57477.0 i/s - 1.88x slower
+            Nokogiri:     4210.8 i/s - 25.63x slower
+                  Ox:     2006.0 i/s - 53.81x slower
+                 Oga:      107.7 i/s - 1002.67x slower
+
+Find 'fees' and get attr total_record_count
+
+Calculating -------------------------------------
+            Nokogiri   741.000  i/100ms
+                 Oga    10.000  i/100ms
+                  Ox   197.000  i/100ms
+             WeakXml     1.385k i/100ms
+     WeakXml (+hint)     4.568k i/100ms
+       WeakXml (-ML)     4.014k i/100ms
+WeakXml (+hint, -ML)     5.587k i/100ms
+-------------------------------------------------
+            Nokogiri      8.632k (±17.4%) i/s -     17.043k
+                 Oga    106.709  (± 3.7%) i/s -    220.000 
+                  Ox      2.025k (± 1.2%) i/s -      4.137k
+             WeakXml     15.940k (± 2.1%) i/s -     31.855k
+     WeakXml (+hint)     68.124k (± 1.2%) i/s -    137.040k
+       WeakXml (-ML)     57.698k (± 2.5%) i/s -    116.406k
+WeakXml (+hint, -ML)     90.311k (± 1.6%) i/s -    184.371k
+
+Comparison:
+WeakXml (+hint, -ML):    90311.0 i/s
+     WeakXml (+hint):    68123.8 i/s - 1.33x slower
+       WeakXml (-ML):    57698.1 i/s - 1.57x slower
+             WeakXml:    15940.1 i/s - 5.67x slower
+            Nokogiri:     8632.0 i/s - 10.46x slower
+                  Ox:     2024.9 i/s - 44.60x slower
+                 Oga:      106.7 i/s - 846.33x slower
 
 
 Find all 'fee' and extract attribute 'link'
 
 Calculating -------------------------------------
-            Nokogiri   744.000  i/100ms
-                 Oga    35.000  i/100ms
-                  Ox   500.000  i/100ms
-             WeakXml     1.127k i/100ms
-       WeakXml (-ML)     3.040k i/100ms
+            Nokogiri   757.000  i/100ms
+                 Oga    40.000  i/100ms
+                  Ox   537.000  i/100ms
+             WeakXml   849.000  i/100ms
+       WeakXml (-ML)     4.179k i/100ms
 -------------------------------------------------
-            Nokogiri      7.896k (± 6.0%) i/s -     39.432k
-                 Oga    360.497  (± 1.4%) i/s -      1.820k
-                  Ox      5.272k (± 1.0%) i/s -     26.500k
-             WeakXml     12.678k (± 1.1%) i/s -     64.239k
-       WeakXml (-ML)     41.792k (± 1.5%) i/s -    209.760k
+            Nokogiri      8.113k (±14.3%) i/s -     15.897k
+                 Oga    402.017  (± 1.0%) i/s -    840.000 
+                  Ox      5.731k (± 1.1%) i/s -     11.814k
+             WeakXml      9.237k (± 2.1%) i/s -     18.678k
+       WeakXml (-ML)     58.899k (± 1.7%) i/s -    121.191k
 
 Comparison:
-       WeakXml (-ML):    41791.8 i/s
-             WeakXml:    12677.5 i/s - 3.30x slower
-            Nokogiri:     7896.2 i/s - 5.29x slower
-                  Ox:     5271.8 i/s - 7.93x slower
-                 Oga:      360.5 i/s - 115.93x slower
+       WeakXml (-ML):    58899.0 i/s
+             WeakXml:     9236.8 i/s - 6.38x slower
+            Nokogiri:     8112.8 i/s - 7.26x slower
+                  Ox:     5731.0 i/s - 10.28x slower
+                 Oga:      402.0 i/s - 146.51x slower
 
 
  Real life example with a hand full finds on a document
 
 Calculating -------------------------------------
-            Nokogiri   227.000  i/100ms
-             WeakXml   792.000  i/100ms
+            Nokogiri   217.000  i/100ms
+             WeakXml   767.000  i/100ms
 -------------------------------------------------
-            Nokogiri      2.282k (± 5.3%) i/s -     11.577k
-             WeakXml      8.642k (± 1.1%) i/s -     43.560k
+            Nokogiri      2.314k (± 5.3%) i/s -      4.774k
+             WeakXml      8.371k (± 0.6%) i/s -     16.874k
 
 Comparison:
-             WeakXml:     8642.3 i/s
-            Nokogiri:     2282.0 i/s - 3.79x slower
+             WeakXml:     8371.4 i/s
+            Nokogiri:     2313.9 i/s - 3.62x slower
 

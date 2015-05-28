@@ -1,27 +1,26 @@
 class Fragment
-  def attr(key = nil)
-    if @attr.nil?
-      @attr = {}
+  # Compiling regular expressions is expensive, specially if one uses variable
+  # parts. So, in order to achive the best performance, these should be compiled
+  # upfront without any "runtime dependencies".
+  ATTRIBUTES_REGEXP = Regexp.compile(/\A<\w+\s+([^>]+)/m)
+  CONTENT_REGEXP = Regexp.compile(/.*?>(.*?)<[^>]+>\Z/m)
 
-      @given_attributes.split(" ").each do |_key_value_pair|
-        _key, _value =_key_value_pair.split("=")
-        #_key.strip!
-        #_value.strip!
-        #_value.gsub!("\"", "")
+  def initialize(tag, xml)
+    @tag = tag
+    @xml = xml
+  end
 
-        @attr[_key] = _value
+  def attr(key)
+    if match_data = @xml.match(ATTRIBUTES_REGEXP)
+      if value_match_data = match_data.captures.first.match(/#{key}="(.+?)"/)
+        value_match_data.captures.first
       end
     end
-
-    key.nil? ? @attr : @attr[key]
   end
 
   def content
-    @content ||= @given_content.tap(&:strip!)
-  end
-
-  def initialize(tag, content, attributes = nil)
-    @given_attributes = attributes
-    @given_content = content
+    if match_data = @xml.match(CONTENT_REGEXP)
+      match_data.captures.first.tap(&:strip!)
+    end
   end
 end

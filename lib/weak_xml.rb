@@ -7,13 +7,14 @@ class WeakXml
   # class methods
   #
   def self.find(tag, xml, options = {})
-    match_data = xml.match(regex_factory(tag, options))
-    Fragment.new(tag, *match_data.captures.rotate!) if match_data
+    if matched_string = xml[regex_factory(tag, options)]
+      Fragment.new(tag, matched_string)
+    end
   end
 
   def self.find_all(tag, xml, options = {})
-    xml.scan(regex_factory(tag, options)).map! do |_captures|
-      Fragment.new(tag, *_captures.rotate!)
+    xml.scan(regex_factory(tag, options)).map! do |_match|
+      Fragment.new(tag, _match)
     end
   end
 
@@ -22,9 +23,9 @@ class WeakXml
 
     regexp_base =
     if tag.start_with?("<") && tag.end_with?(">")
-      "<#{tag[1..-2]}>(.*?)<\/#{tag[1..-2]}>"
+      "#{tag}.*?<\/#{tag[1..-2]}>"
     else
-      "<#{tag}(\\s+.*?)?>(.*?)<\/#{tag}>"
+      "<#{tag}[>\s].*?<\/#{tag}>"
     end
 
     Regexp.new(regexp_base, (enable_multiline ? Regexp::MULTILINE : 0))

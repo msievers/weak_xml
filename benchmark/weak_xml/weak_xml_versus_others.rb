@@ -14,6 +14,8 @@ class Benchmark::WeakXml::WeakXmlVersusOthers
     puts "Find 'z303-id' and get content\n\n"
 
     Benchmark.ips do |x|
+      x.config(time: 2, warmup: 1)
+
       x.report("Nokogiri") do
         Nokogiri::XML(ALEPH_BOR_INFO_XML).xpath(".//z303-id").text
       end
@@ -41,7 +43,7 @@ class Benchmark::WeakXml::WeakXmlVersusOthers
       end
 
       x.report("WeakXml (+hint, -ML)") do
-        WeakXml.find("<z303-id>", ALEPH_BOR_INFO_XML, disable_multiline: true)#.content
+        WeakXml.find("<z303-id>", ALEPH_BOR_INFO_XML, disable_multiline: true).content
       end
 
       x.report("Plain regex") do
@@ -51,9 +53,49 @@ class Benchmark::WeakXml::WeakXmlVersusOthers
       x.compare!
     end
 
+    puts "Find 'fees' and get attr total_record_count\n\n"
+
+    Benchmark.ips do |x|
+      x.config(time: 2, warmup: 1)
+
+      x.report("Nokogiri") do
+        Nokogiri::XML(ALMA_FEES_XML).xpath(".//fees").attr("total_record_count").value
+      end
+
+      unless DISABLE_ALL_EXCEPT_NOKOGIRI
+        x.report("Oga") do
+          Oga.parse_xml(ALEPH_BOR_INFO_XML).xpath(".//z303-id").text
+        end
+
+        x.report("Ox") do
+          Ox.parse(ALEPH_BOR_INFO_XML).locate("*/z303-id").first.text
+        end
+      end
+
+      x.report("WeakXml") do
+        WeakXml.find("fees", ALMA_FEES_XML).attr("total_record_count")
+      end
+
+      x.report("WeakXml (+hint)") do
+        WeakXml.find("<z303-id>", ALEPH_BOR_INFO_XML).content
+      end
+
+      x.report("WeakXml (-ML)") do
+        WeakXml.find("z303-id", ALEPH_BOR_INFO_XML, disable_multiline: true).content
+      end
+
+      x.report("WeakXml (+hint, -ML)") do
+        WeakXml.find("<z303-id>", ALEPH_BOR_INFO_XML, disable_multiline: true)#.content
+      end
+      
+      x.compare!
+    end
+
     puts "\nFind all 'fee' and extract attribute 'link'\n\n"
 
     Benchmark.ips do |x|
+      x.config(time: 2, warmup: 1)
+      
       x.report("Nokogiri") do
         Nokogiri::XML(ALMA_FEES_XML).xpath(".//fee").map { |_fee| _fee.attr("link") }
       end
@@ -82,6 +124,8 @@ class Benchmark::WeakXml::WeakXmlVersusOthers
     puts "\n Real life example with a hand full finds on a document\n\n"
 
     Benchmark.ips do |x|
+      x.config(time: 2, warmup: 1)
+
       x.report("Nokogiri") do
         doc = Nokogiri::XML(ALEPH_BOR_INFO_XML)
 

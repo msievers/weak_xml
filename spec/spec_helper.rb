@@ -9,6 +9,8 @@ else
   SimpleCov.start
 end
 
+require "active_support"
+require "active_support/core_ext"
 require "weak_xml"
 
 begin
