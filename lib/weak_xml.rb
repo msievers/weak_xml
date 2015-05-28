@@ -3,9 +3,6 @@ require "weak_xml/version"
 class WeakXml
   require_relative "./weak_xml/fragment"
 
-  #
-  # class methods
-  #
   def self.find(tag, xml, options = {})
     if matched_string = xml[regex_factory(tag, options)]
       Fragment.new(tag, matched_string)
@@ -13,8 +10,8 @@ class WeakXml
   end
 
   def self.find_all(tag, xml, options = {})
-    xml.scan(regex_factory(tag, options)).map! do |_match|
-      Fragment.new(tag, _match)
+    xml.scan(regex_factory(tag, options)).map! do |match|
+      Fragment.new(tag, match)
     end
   end
 
@@ -31,9 +28,6 @@ class WeakXml
     Regexp.new(regexp_base, (enable_multiline ? Regexp::MULTILINE : 0))
   end
 
-  #
-  # instance methods
-  #
   def initialize(xml, options = {})
     @options = options
     @xml = xml
