@@ -48,7 +48,7 @@ some_nodes.map(&:content) # => ["content1", "content2", "content3"]
 
 ## Why anybody might like it anyway ?
 
-There are no dependencies. It's fast. According to the 80/20 rule, many xml documents should work without problems.
+There are no dependencies. It's fast (factor 10 and up compared to Nokigiri for certain scenarios). According to the 80/20 rule, many xml documents should work without problems.
 
 ## Development
 
