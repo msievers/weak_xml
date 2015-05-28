@@ -8,7 +8,7 @@ group :development do
   gem "benchmark-ips"
   gem "nokogiri"
   gem "oga"
-  gem "ox"
+  gem "ox" if RUBY_ENGINE == "ruby"
 
   if !ENV["CI"] && RUBY_ENGINE == "ruby"
     gem "pry",                "~> 0.9.12.6"
