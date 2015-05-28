@@ -26,7 +26,7 @@ xml = <<-EOXML
 EOXML
 
 # .find gets the first node with the given tag or nil
-some_node = WeakXml.find("bar", xml) # => #<Fragment ...
+some_node = WeakXml.find("bar", xml) # => #<WeakXml::Fragment ...
 WeakXml.find("nope", xml) # => nil
 
 # you can get the content
