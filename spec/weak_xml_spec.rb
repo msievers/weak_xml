@@ -39,7 +39,7 @@ describe WeakXml do
   end
 
   describe "#find_all" do
-    it "is a proxy for .find" do
+    it "is a proxy for .find_all" do
       expect(WeakXml.find_all("fee", xml).length).to eq(WeakXml.new(xml).find_all("fee").length)
     end
   end
