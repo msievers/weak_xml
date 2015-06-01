@@ -15,19 +15,6 @@ class WeakXml
     end
   end
 
-  def self.regex_factory(tag, options = {})
-    options[:multiline] = options[:multiline].nil? ? true : !!options[:multiline]
-
-    regexp_base =
-    if tag.start_with?("<") && tag.end_with?(">")
-      "#{tag}.*?<\/#{tag[1..-2]}>"
-    else
-      "<#{tag}[>\s].*?<\/#{tag}>"
-    end
-
-    Regexp.new(regexp_base, (options[:multiline] ? Regexp::MULTILINE : 0))
-  end
-
   def initialize(xml, options = {})
     @options = options
     @xml = xml
@@ -39,5 +26,20 @@ class WeakXml
 
   def find_all(tag, options = nil)
     self.class.find_all(tag, @xml, (options || @options))
+  end
+
+  private
+
+  def self.regex_factory(tag, options = {})
+    options[:multiline] = options[:multiline].nil? ? true : !!options[:multiline]
+
+    regexp_base =
+    if tag.start_with?("<") && tag.end_with?(">")
+      "#{tag}.*?<\/#{tag[1..-2]}>"
+    else
+      "<#{tag}[>\s].*?<\/#{tag}>"
+    end
+
+    Regexp.new(regexp_base, (options[:multiline] ? Regexp::MULTILINE : 0))
   end
 end
