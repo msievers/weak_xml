@@ -21,6 +21,7 @@ class WeakXml::Fragment
   end
 
   def content
+    @content ||=
     if match_data = @xml.match(CONTENT_REGEXP)
       match_data.captures.first.tap(&:strip!)
     end
