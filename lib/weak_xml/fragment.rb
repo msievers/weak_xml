@@ -26,4 +26,12 @@ class WeakXml::Fragment
       match_data.captures.first.tap(&:strip!)
     end
   end
+
+  def find(tag, options = {})
+    WeakXml.find(tag, content, options)
+  end
+
+  def find_all(tag, options = {})
+    WeakXml.find_all(tag, content, options)
+  end
 end

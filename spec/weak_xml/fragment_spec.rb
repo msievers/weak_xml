@@ -24,4 +24,16 @@ describe WeakXml::Fragment do
       expect(subject.content).not_to be_nil
     end
   end
+
+  describe "#find" do
+    it "calls WeakXml.find with its content" do
+      expect(subject.find("type")).not_to be_nil
+    end
+  end
+
+  describe "#find_all" do
+    it "calls WeakXml.find_all with its content" do
+      expect(subject.find_all("type")).not_to be_empty
+    end
+  end
 end
