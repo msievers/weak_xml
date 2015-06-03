@@ -1,3 +1,4 @@
+=begin
 describe WeakXml::Fragment do
   let(:xml) do
     read_asset("alma_user_fees.xml")
@@ -37,3 +38,4 @@ describe WeakXml::Fragment do
     end
   end
 end
+=end

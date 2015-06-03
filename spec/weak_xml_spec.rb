@@ -31,6 +31,29 @@ describe WeakXml do
       expect(WeakXml.new(xml, multiline: true)).to be_a(described_class)
     end
   end
+  describe "#attr" do
+    subject { WeakXml.find("fee", xml) }
+
+    context "if there is an attribte with the given name" do
+      it "returns the value of the attribute" do
+        expect(subject.attr("link")).not_to be_nil
+      end
+    end
+
+    context "if there is no attribute with the given name" do
+      it "returns nil" do
+        expect(subject.attr("foobar")).to be_nil
+      end
+    end
+  end
+
+  describe "#content" do
+    subject { WeakXml.find("fee", xml) }
+
+    it "returns the fragment's content" do
+      expect(subject.content).not_to be_nil
+    end
+  end
 
   describe "#find" do
     it "is a proxy for .find" do
@@ -41,6 +64,12 @@ describe WeakXml do
   describe "#find_all" do
     it "is a proxy for .find_all" do
       expect(WeakXml.find_all("fee", xml).length).to eq(WeakXml.new(xml).find_all("fee").length)
+    end
+  end
+
+  describe "#to_s" do
+    it "returns the instances xml" do
+      expect(WeakXml.new(xml).to_s).to eq(xml)
     end
   end
 end
