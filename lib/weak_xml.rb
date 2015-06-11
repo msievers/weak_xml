@@ -4,7 +4,7 @@ class WeakXml
   # Compiling regular expressions is expensive, specially if one uses variable
   # parts. So, in order to achive the best performance, these should be compiled
   # upfront without any "runtime dependencies".
-  ATTRIBUTES_REGEXP = Regexp.compile(/\A<\w+\s+([^>]+)/m)
+  ATTRIBUTES_REGEXP = Regexp.compile(/\A<[^>\s]+\s+([^>]+)/m)
   CONTENT_REGEXP = Regexp.compile(/.*?>(.*?)<[^>]+>\Z/m)
 
   def self.find(tag, xml, options = {})
